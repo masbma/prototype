@@ -1350,25 +1350,25 @@ html, body {
   background-color: #bbbaa6;
   width: 100vw;
   height: 100svh;
-  min-height: 55em;
+  min-height: 30em;
   position: relative;
   overflow: hidden;
 }
 
 .minigame__new-header {
   position: absolute;
-  top: 120px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 15;
   text-align: center;
   width: 100%;
-  padding: 0 80px;
+  padding: 0 20px;
 }
 
 .minigame__new-header-h1 {
   color: #242519;
-  font-size: 180px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1.1;
   margin: 0;
@@ -1377,8 +1377,8 @@ html, body {
 
 .minigame__home-button-container {
   position: absolute;
-  bottom: 80px;
-  left: 80px;
+  bottom: 20px;
+  left: 20px;
   z-index: 15;
   text-align: center;
 }
@@ -1410,7 +1410,7 @@ html, body {
 .minigame__links-a {
   color: inherit;
   margin-bottom: 0;
-  font-size: 105px;
+  font-size: 24px;
   text-decoration: none;
 }
 
@@ -1439,7 +1439,7 @@ html, body {
 .minigame__btn-p {
   white-space: nowrap;
   margin-bottom: 0;
-  font-size: 105px;
+  font-size: 24px;
 }
 
 .minigame__btn.is--secondary {
@@ -1477,7 +1477,7 @@ html, body {
 
 .minigame__eyebrow {
   color: #68695f;
-  font-size: 200px;
+  font-size: 40px;
   position: absolute;
   bottom: calc(100% + 80px);
 }
@@ -1485,7 +1485,7 @@ html, body {
 .minigame__h1 {
   pointer-events: none;
   justify-content: center;
-  font-size: 22.5vw;
+  font-size: 8vw;
   line-height: .75;
   display: flex;
 }
@@ -1515,7 +1515,7 @@ html, body {
   width: 100%;
   display: flex;
   position: absolute;
-  bottom: 900px;
+  bottom: 250px;
   left: 0;
   transition: 0.4s cubic-bezier(.65, 0, 0, 1);
 }
@@ -1532,15 +1532,15 @@ html, body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 500px;
+  width: 150px;
+  height: 150px;
   display: flex;
   position: absolute;
 }
 
 .minigame__pull-hand {
   pointer-events: none;
-  width: 200px;
+  width: 60px;
   position: relative;
 }
 
@@ -1548,17 +1548,17 @@ html, body {
   color: #68695f;
   pointer-events: none;
   margin-bottom: 0;
-  font-size: 105px;
+  font-size: 24px;
   line-height: 1;
   position: absolute;
   bottom: 0;
 }
 
 .minigame__rocket-top {
-  width: 170px;
+  width: 85px;
   display: none;
   position: absolute;
-  transform: translate(0, -95px);
+  transform: translate(0, -47px);
 }
 
 .minigame__pull.is--drag .minigame__rocket-top {
@@ -1572,8 +1572,8 @@ html, body {
   will-change: transform;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 600px;
+  width: 200px;
+  height: 300px;
   display: flex;
   position: absolute;
   overflow: hidden;
@@ -1587,8 +1587,8 @@ html, body {
 .minigame__fly {
   justify-content: center;
   align-items: center;
-  width: 270px;
-  height: 270px;
+  width: 135px;
+  height: 135px;
   display: flex;
   position: absolute;
   top: 50%;
@@ -1624,7 +1624,7 @@ html, body {
   flex-flow: column;
   align-items: center;
   max-width: calc(100vw - 160px);
-  padding: 240px;
+  padding: 80px;
   display: flex;
   transition: 0.4s cubic-bezier(.65, 0, 0, 1);
   opacity: 0;
@@ -1639,24 +1639,24 @@ html, body {
 }
 
 .minigame__score-svg {
-  width: 240px;
+  width: 120px;
 }
 
 .minigame__score-h2 {
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 900;
-  font-size: 180px;
+  font-size: 36px;
   line-height: 0.9;
 }
 
 .minigame__score-p {
   opacity: .5;
-  font-size: 105px;
+  font-size: 24px;
 }
 
 .retry-svg {
-  width: 100px;
+  width: 50px;
 }
 
 /* 404 page dot styling - overrides main page dot styling */
@@ -1664,8 +1664,8 @@ html, body {
   pointer-events: none;
   background-color: #242519;
   border-radius: 20px;
-  width: 160px;
-  height: 160px;
+  width: 80px;
+  height: 80px;
   position: absolute;
 }
 
@@ -1696,7 +1696,7 @@ html, body {
   user-select: none;
   color: #efeeec;
   background-color: #242519;
-  padding: 80px 120px;
+  padding: 20px 30px;
   transition: all 0.3s ease;
   border: 4px solid #242519;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -1740,7 +1740,7 @@ html, body {
 .btn-magnetic__text-p {
   text-align: center;
   margin-bottom: 0;
-  font-size: 120px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1;
   position: relative;
@@ -1790,136 +1790,29 @@ html, body {
 /* 404 Page Responsive Styles */
 @media screen and (max-width: 991px) {
   .minigame__h1 {
-    font-size: 40vw;
+    font-size: 10vw;
   }
 
   .minigame__new-header {
-    top: 80px;
-    padding: 0 60px;
+    top: 40px;
+    padding: 0 30px;
   }
 
   .minigame__new-header-h1 {
-    font-size: 140px;
+    font-size: 28px;
   }
 
   .minigame__home-button-container {
-    bottom: 60px;
-    left: 60px;
+    bottom: 30px;
+    left: 30px;
   }
 
   .btn-magnetic__click {
-    padding: 60px 90px;
+    padding: 15px 25px;
   }
 
   .btn-magnetic__text-p {
-    font-size: 90px;
-  }
-
-  .mingame__navbar {
-    padding: 160px;
-  }
-
-  .minigame__logo-svg {
-    width: 450px;
-  }
-
-  .minigame__links {
-    grid-column-gap: 120px;
-    grid-row-gap: 120px;
-  }
-
-  .minigame__links-a {
-    font-size: 80px;
-  }
-
-  .minigame__btn {
-    padding: 40px 70px;
-  }
-
-  .minigame__btn-p {
-    font-size: 80px;
-  }
-
-  .minigame__eyebrow {
-    font-size: 160px;
-  }
-
-  .minigame__controls {
-    bottom: 700px;
-  }
-
-  .minigame__pull {
-    width: 400px;
-    height: 400px;
-  }
-
-  .minigame__pull-hand {
-    width: 160px;
-  }
-
-  .minigame__pull-text {
-    font-size: 80px;
-  }
-
-  .mingame__rocket {
-    width: 320px;
-    height: 480px;
-  }
-
-  .minigame__fly {
-    width: 220px;
-    height: 220px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .minigame__eyebrow {
-    font-size: 140px;
-  }
-
-  .minigame__new-header {
-    top: 60px;
-    padding: 0 40px;
-  }
-
-  .minigame__new-header-h1 {
-    font-size: 100px;
-  }
-
-  .minigame__home-button-container {
-    bottom: 40px;
-    left: 40px;
-  }
-
-  .btn-magnetic__click {
-    padding: 40px 60px;
-    border-radius: 20px;
-  }
-
-  .btn-magnetic__text-p {
-    font-size: 70px;
-  }
-
-  .minigame__controls {
-    bottom: 500px;
-  }
-
-  .minigame__links {
-    display: none;
-  }
-
-  .minigame__fly {
-    width: 180px;
-    height: 180px;
-  }
-
-  .minigame {
-    min-height: 40em;
-  }
-
-  .mingame__rocket {
-    width: 280px;
-    height: 420px;
+    font-size: 24px;
   }
 
   .mingame__navbar {
@@ -1927,7 +1820,16 @@ html, body {
   }
 
   .minigame__logo-svg {
-    width: 350px;
+    width: 325px;
+  }
+
+  .minigame__links {
+    grid-column-gap: 80px;
+    grid-row-gap: 80px;
+  }
+
+  .minigame__links-a {
+    font-size: 20px;
   }
 
   .minigame__btn {
@@ -1935,25 +1837,123 @@ html, body {
   }
 
   .minigame__btn-p {
-    font-size: 70px;
+    font-size: 20px;
+  }
+
+  .minigame__eyebrow {
+    font-size: 32px;
+  }
+
+  .minigame__controls {
+    bottom: 200px;
   }
 
   .minigame__pull {
-    width: 350px;
-    height: 350px;
+    width: 120px;
+    height: 120px;
   }
 
   .minigame__pull-hand {
-    width: 140px;
+    width: 48px;
   }
 
   .minigame__pull-text {
-    font-size: 70px;
+    font-size: 20px;
+  }
+
+  .mingame__rocket {
+    width: 160px;
+    height: 240px;
+  }
+
+  .minigame__fly {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .minigame__eyebrow {
+    font-size: 28px;
+  }
+
+  .minigame__new-header {
+    top: 30px;
+    padding: 0 20px;
+  }
+
+  .minigame__new-header-h1 {
+    font-size: 22px;
+  }
+
+  .minigame__home-button-container {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .btn-magnetic__click {
+    padding: 12px 20px;
+    border-radius: 15px;
+  }
+
+  .btn-magnetic__text-p {
+    font-size: 20px;
+  }
+
+  .minigame__controls {
+    bottom: 150px;
+  }
+
+  .minigame__links {
+    display: none;
+  }
+
+  .minigame__fly {
+    width: 90px;
+    height: 90px;
+  }
+
+  .minigame {
+    min-height: 25em;
+  }
+
+  .mingame__rocket {
+    width: 140px;
+    height: 210px;
+  }
+
+  .mingame__navbar {
+    padding: 40px;
+  }
+
+  .minigame__logo-svg {
+    width: 250px;
+  }
+
+  .minigame__btn {
+    padding: 20px 35px;
+  }
+
+  .minigame__btn-p {
+    font-size: 18px;
+  }
+
+  .minigame__pull {
+    width: 100px;
+    height: 100px;
+  }
+
+  .minigame__pull-hand {
+    width: 40px;
+  }
+
+  .minigame__pull-text {
+    font-size: 18px;
   }
 }
 
 @media screen and (max-width: 479px) {
   .minigame {
-    min-height: 30em;
+    min-height: 20em;
   }
 }
