@@ -1345,11 +1345,19 @@ html, body {
 
 /* ========== 404 PAGE STYLES ========== */
 
+/* Prevent scrolling on 404 page */
+body.page-404 {
+  height: 100vh;
+  overflow: hidden;
+  padding-bottom: 0;
+  background: none;
+}
+
 .minigame {
   color: #242519;
   background-color: #bbbaa6;
   width: 100vw;
-  height: 100svh;
+  height: 100vh;
   min-height: 30em;
   position: relative;
   overflow: hidden;
@@ -1450,9 +1458,11 @@ html, body {
   background-color: #242519;
   justify-content: center;
   align-items: center;
-  margin-top: 160px;
-  padding-right: 120px;
+  margin: 0;
+  padding: 15px 30px;
   display: flex;
+  border-radius: 20px;
+  flex-shrink: 0;
 }
 
 .minigame__btn-p.is--secondary {
@@ -1461,6 +1471,7 @@ html, body {
   line-height: 1;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .minigame__center {
@@ -1555,10 +1566,10 @@ html, body {
 }
 
 .minigame__rocket-top {
-  width: 85px;
+  width: 30px;
   display: none;
   position: absolute;
-  transform: translate(0, -47px);
+  transform: translate(0, -15px);
 }
 
 .minigame__pull.is--drag .minigame__rocket-top {
@@ -1572,8 +1583,8 @@ html, body {
   will-change: transform;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 300px;
+  width: 70px;
+  height: 105px;
   display: flex;
   position: absolute;
   overflow: hidden;
@@ -1587,8 +1598,8 @@ html, body {
 .minigame__fly {
   justify-content: center;
   align-items: center;
-  width: 135px;
-  height: 135px;
+  width: 50px;
+  height: 50px;
   display: flex;
   position: absolute;
   top: 50%;
@@ -1615,21 +1626,24 @@ html, body {
 }
 
 .minigame__score-screen {
-  grid-column-gap: 60px;
-  grid-row-gap: 60px;
   pointer-events: auto;
   text-align: center;
   background-color: #efeeec;
   border-radius: 40px;
-  flex-flow: column;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   max-width: calc(100vw - 160px);
-  padding: 80px;
+  max-height: 50vh;
+  padding: 25px 35px;
   display: flex;
+  gap: 15px;
   transition: 0.4s cubic-bezier(.65, 0, 0, 1);
   opacity: 0;
   visibility: hidden;
   transform: translateY(32px) rotate(0.001deg) scale(0.9);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 [data-minigame-status="finished"] .minigame__score-screen {
@@ -1639,24 +1653,30 @@ html, body {
 }
 
 .minigame__score-svg {
-  width: 120px;
+  width: 80px;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .minigame__score-h2 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
   font-weight: 900;
-  font-size: 36px;
-  line-height: 0.9;
+  font-size: 28px;
+  line-height: 1.1;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .minigame__score-p {
   opacity: .5;
-  font-size: 24px;
+  font-size: 18px;
+  text-align: center;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .retry-svg {
-  width: 50px;
+  width: 35px;
 }
 
 /* 404 page dot styling - overrides main page dot styling */
@@ -1862,13 +1882,13 @@ html, body {
   }
 
   .mingame__rocket {
-    width: 160px;
-    height: 240px;
+    width: 56px;
+    height: 84px;
   }
 
   .minigame__fly {
-    width: 110px;
-    height: 110px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -1909,8 +1929,8 @@ html, body {
   }
 
   .minigame__fly {
-    width: 90px;
-    height: 90px;
+    width: 35px;
+    height: 35px;
   }
 
   .minigame {
@@ -1918,8 +1938,8 @@ html, body {
   }
 
   .mingame__rocket {
-    width: 140px;
-    height: 210px;
+    width: 49px;
+    height: 73px;
   }
 
   .mingame__navbar {

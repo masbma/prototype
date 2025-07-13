@@ -632,14 +632,14 @@ function initConfettiExplosion(x, y) {
 
     gsap.timeline({ onComplete: () => dot.remove() })
       .to(dot, {
-        scale:    gsap.utils.random(0.3, 1),
+        scale:    gsap.utils.random(0.12, 0.4),
         duration: 0.3,
         ease:     "power3.out"
       })
       .to(dot, {
         duration: 2,
         physics2D: {
-          velocity: gsap.utils.random(500, 1000),
+          velocity: gsap.utils.random(200, 400),
           angle:    gsap.utils.random(0, 360),
           gravity:  500
         },
@@ -841,6 +841,10 @@ function init404Minigame() {
         if (rocketTween) { rocketTween.kill(); isFlying = false; }
         gsap.set(rocket, { clearProps:'all', x:0, y:0, opacity:0, rotation:0 });
 
+        // Hide custom cursor during drag
+        const cursor = document.querySelector('.cursor');
+        if (cursor) cursor.style.display = 'none';
+
         containerRect         = container.getBoundingClientRect();
         this.hasDraggedEnough = false;
 
@@ -884,6 +888,10 @@ function init404Minigame() {
       },
 
       onRelease() {
+        // Show custom cursor again after drag
+        const cursor = document.querySelector('.cursor');
+        if (cursor) cursor.style.display = 'block';
+
         pull.style.cursor = 'grab';
         pull.classList.remove('is--drag');
 
