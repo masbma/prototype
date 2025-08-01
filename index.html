@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Physics2DPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 </head>
@@ -57,102 +57,102 @@
         </div>
     </header>
     
-    <main>
-        <p>Here are some of my favourite movies:</p>
-        
-        <div aria-label="Slider" data-gsap-slider-init="" role="region" aria-roledescription="carousel" class="gsap-slider">
-          <div data-gsap-slider-collection="" class="gsap-slider__collection">
-            <div data-gsap-slider-list="" class="gsap-slider__list">
-              <!-- Slide 1 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt2076822/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BM2MxZGI0ZGMtYjAyOS00MTgwLThlYzItOTcwZjBiMWMxZTc5XkEyXkFqcGc@._V1_QL75_UX400.5_.jpg" alt="Movie Poster" class="movie-poster">
+    <!-- Flick Cards Section -->
+    <section class="flick-cards-section">
+        <h2 class="flick-cards-title">Here are some of my favourite movies</h2>
+        <div data-flick-cards-init="" class="flick-group">
+          <div class="flick-group__relative-object">
+            <div class="flick-group__relative-object-before"></div>
+          </div>
+          <div data-flick-cards-collection="" class="flick-group__collection">
+            <div data-flick-cards-list="" class="flick-group__list">
+              <!-- Movie 1 - Chaos Walking -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/de/title/tt2076822/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="Chaos Walking Movie Poster" src="https://media-cache.cinematerial.com/p/500x/r89ln1ss/chaos-walking-french-movie-cover.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 2 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0133093/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BNThiYTQzOTUtNmFjYy00OWEwLTg2NWUtMmM3NGE0YjFjOWRjXkEyXkFqcGc@._V1_QL75_UX232.5_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 2 - The Matrix -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0133093/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="The Matrix Movie Poster" src="https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 3 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt1375666/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMjExMjkwNTQ0Nl5BMl5BanBnXkFtZTcwNTY0OTk1Mw@@._V1_QL75_UX283.5_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 3 - Inception -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt1375666/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="Inception Movie Poster" src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 4 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0137523/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTA0ODYzYTAtNjMyOC00NmMwLWE5NzUtODRiNGExYjRlMzRjXkEyXkFqcGc@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 4 - Fight Club -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0137523/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="Fight Club Movie Poster" src="https://m.media-amazon.com/images/M/MV5BNTA0ODYzYTAtNjMyOC00NmMwLWE5NzUtODRiNGExYjRlMzRjXkEyXkFqcGc@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 5 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0317248/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMjA4ODQ3ODkzNV5BMl5BanBnXkFtZTYwOTc4NDI3._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 5 - City of God -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0317248/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="City of God Movie Poster" src="https://m.media-amazon.com/images/M/MV5BOTMwYjc5ZmItYTFjZC00ZGQ3LTlkNTMtMjZiNTZlMWQzNzI5XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 6 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0482571/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTM3MzQ5MjQ5OF5BMl5BanBnXkFtZTcwMTQ3NzMzMw@@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 6 - The Prestige -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0482571/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="The Prestige Movie Poster" src="https://m.media-amazon.com/images/M/MV5BMjA4NDI0MTIxNF5BMl5BanBnXkFtZTYwNTM0MzY2._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 7 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt1675434/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTYxNDA3MDQwNl5BMl5BanBnXkFtZTcwNTU4Mzc1Nw@@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 7 - The Intouchables -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt1675434/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="The Intouchables Movie Poster" src="https://m.media-amazon.com/images/M/MV5BMTYxNDA3MDQwNl5BMl5BanBnXkFtZTcwNTU4Mzc1Nw@@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 8 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0120689/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 8 - The Green Mile -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0120689/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="The Green Mile Movie Poster" src="https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Slide 9 -->
-              <div data-gsap-slider-item="" class="gsap-slider__item">
-                <a href="https://www.imdb.com/title/tt0253474/" target="_blank" rel="noopener noreferrer">
-                  <div class="demo-card">
-                    <div class="before__125"></div>
-                    <img src="https://m.media-amazon.com/images/M/MV5BMjEwNmEwYjgtNTk3ZC00NjljLTg5ZDctZTY3ZGQwZjRkZmQxXkEyXkFqcGc@._V1_QL75_UX234_.jpg" alt="Movie Poster" class="movie-poster">
+              <!-- Movie 9 - The Pianist -->
+              <div data-flick-cards-item-status="" data-flick-cards-item="" class="flick-group__item">
+                <a href="https://www.imdb.com/title/tt0253474/" target="_blank" rel="noopener noreferrer" class="flick-card">
+                  <div class="flick-card__before"></div>
+                  <div class="flick-card__media">
+                    <img width="256" loading="lazy" alt="The Pianist Movie Poster" src="https://m.media-amazon.com/images/M/MV5BOWRiZDIxZjktMTA1NC00MDQ2LWEzMjUtMTliZmY3NjQ3ODJiXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" class="cover-image">
                   </div>
                 </a>
               </div>
-              <!-- Etc. -->
             </div>
           </div>
-          <div data-gsap-slider-controls="" class="gsap-slider__controls">
-            <button data-gsap-slider-control="prev" class="gsap-slider__control">Prev</button>
-            <button data-gsap-slider-control="next" class="gsap-slider__control">Next</button>
-          </div>
         </div>
-    </main>
+    </section>
+    
+    
     
     <section class="content-box section-dots">
         <div class="section-dots__wrap">
@@ -314,27 +314,94 @@
         <div data-css-marquee="" class="marquee-css">
             <div data-css-marquee-list="" class="marquee-css__list">
                 <div class="marquee-css__item">
-                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <p class="marquee-css__item-p">&copy; Osmo, All rights reserved.  2025 demo Website.</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
                 </div>
                 <div class="marquee-css__item">
-                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <p class="marquee-css__item-p">&copy; Osmo, All rights reserved. 2025 demo Website.</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
                 </div>
                 <div class="marquee-css__item">
-                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <p class="marquee-css__item-p">&copy; Osmo, All rights reserved. 2025 demo Website.</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
                 </div>
                 <div class="marquee-css__item">
-                    <p class="marquee-css__item-p">&copy; 2025 My demo Website. All rights reserved.</p>
+                    <p class="marquee-css__item-p">&copy; Osmo, All rights reserved. 2025 demo Website.</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 50 50" fill="none" class="marquee-css__item-svg"><path d="M17.6777 32.3223C12.9893 27.6339 6.63041 25 0 25C6.63041 25 12.9893 22.3661 17.6777 17.6777C22.3661 12.9893 25 6.63041 25 0C25 6.63041 27.6339 12.9893 32.3223 17.6777C37.0107 22.3661 43.3696 25 50 25C43.3696 25 37.0107 27.6339 32.3223 32.3223C27.6339 37.0107 25 43.3696 25 50C25 43.3696 22.3661 37.0107 17.6777 32.3223Z" fill="#C9FC7D"></path></svg>
                 </div>
             </div>
         </div>
     </footer>
     
+    <!-- Back to Top Button -->
+    <div data-back-to-top="wrap" class="back-top__wrap">
+      <button data-back-to-top="button" class="back-top__button">
+        <div class="back-top__arrow-wrap">
+          <div class="back-top__arrow-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 60 60" fill="none" class="back-top__arrow">
+              <path d="M47.5 25L30 7.5L12.5 25" stroke="currentColor" stroke-width="6" stroke-miterlimit="10" stroke-linecap="round"></path>
+              <path d="M30 7.5L30 55" stroke="currentColor" stroke-width="6" stroke-miterlimit="10" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div class="back-top__arrow-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 60 60" fill="none" class="back-top__arrow">
+              <path d="M47.5 25L30 7.5L12.5 25" stroke="currentColor" stroke-width="6" stroke-miterlimit="10" stroke-linecap="round"></path>
+              <path d="M30 7.5L30 55" stroke="currentColor" stroke-width="6" stroke-miterlimit="10" stroke-linecap="round"></path>
+            </svg>
+          </div>
+        </div>
+      </button>
+    </div>
+    
     <script>
-        gsap.registerPlugin(DrawSVGPlugin);
+        gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
+
+        // Back to Top functionality
+        function initBackToTop() {
+          const buttonWrap = document.querySelector('[data-back-to-top="wrap"]');
+          const button = document.querySelector('[data-back-to-top="button"]');
+          if (!button || !buttonWrap) return;
+          
+          // The minimum distance the page must be scrolled (in VH) for the button to appear  
+          let minimumScrollDistance = 50;
+
+          // Un-do the initial CSS styling to hide the wrapper
+          gsap.set(buttonWrap, { autoAlpha: 1 });
+          
+          // Hide the button itself
+          gsap.set(button,{autoAlpha: 0});
+
+          ScrollTrigger.create({
+            trigger: document.body,
+            start: `top top-=${minimumScrollDistance}%`,
+            onEnter: () => {
+              gsap.fromTo(button,{
+                autoAlpha: 0,
+                rotate:-65,
+                scale: 0.4,
+              },{
+                autoAlpha: 1,
+                rotate:0,
+                scale: 1,        
+                duration: 0.45,
+                ease:"power4.out"
+              })
+            },
+            onLeaveBack: () => {
+              gsap.to(button,{
+                autoAlpha: 0,
+                rotate:-65,
+                scale: 0.6,
+                duration:0.4,
+                ease:"power4.out"
+              })
+            },
+          });
+
+          button.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          });
+        }
 
         function initDrawRandomUnderline() {
           const svgVariants = [
@@ -426,6 +493,7 @@
         // Initialize Draw Random Underline when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
           initDrawRandomUnderline();
+          initBackToTop();
         });
     </script>
     
