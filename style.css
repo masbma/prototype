@@ -929,6 +929,16 @@ footer {
   position: absolute;
 }
 
+/* In dark mode, make Anime slider controls match the Dark/Light toggle colors */
+[data-theme-status="dark"] .anime-slider-main .gsap-slider__control {
+  background-color: var(--text-inverse); /* #EFEEEC like toggle */
+  color: #131313; /* dark text like toggle */
+  border-color: var(--text-inverse);
+}
+[data-theme-status="dark"] .anime-slider-main .gsap-slider__control:hover {
+  background-color: #e3e3e3;
+}
+
 /* Background theme transitions */
 [data-theme-status] {
   transition: background-color 0.4s cubic-bezier(0.35, 1, 0.6, 1);
@@ -981,7 +991,7 @@ footer {
 }
 
 [data-theme-status="dark"] .flick-cards-title {
-  color: #e0e0e0;
+  color: #000000;
 }
 
 /* Update header layout for the toggle button */
@@ -1297,6 +1307,17 @@ html, body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
+/* Light mode: make header Philanthropy button black with white text (colors only) */
+[data-theme-status="light"] .philanthropy-button {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+[data-theme-status="light"] .philanthropy-button .text-draw__box {
+  color: #fff;
+}
+
 /* Bottom 404 page button section */
 .bottom-button-section {
     padding: 4rem 2rem;
@@ -1363,6 +1384,34 @@ html, body {
     background: linear-gradient(135deg, #8FE834 0%, #7DD328 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark mode: make bottom 404 button match anime slider controls */
+[data-theme-status="dark"] .bottom-button {
+  background-color: var(--text-inverse); /* #EFEEEC */
+  color: #131313; /* dark text like slider controls */
+  border-color: var(--text-inverse);
+}
+
+[data-theme-status="dark"] .bottom-button .text-draw__box {
+  color: #131313; /* underline stroke matches text color */
+}
+
+[data-theme-status="dark"] .bottom-button:hover {
+  background-color: #e3e3e3; /* same hover feel as slider controls */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode: make bottom 404 button black with white text (colors only) */
+[data-theme-status="light"] .bottom-button {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+[data-theme-status="light"] .bottom-button .text-draw__box {
+  color: #fff;
 }
 
 .calculator-section .container {

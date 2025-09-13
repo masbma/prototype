@@ -325,8 +325,9 @@ function initCookieDarkLight() {
     button.addEventListener('click', initThemeCheck);
   });
 
-  // If theme cookie is 'dark', set theme to dark
-  if (Cookies.get('theme') === 'dark') {
+  // Default to dark if no cookie; honor 'dark' cookie explicitly
+  const cookieTheme = Cookies.get('theme');
+  if (!cookieTheme || cookieTheme === 'dark') {
     const themeElement = document.querySelector('[data-theme-status]');
     if (themeElement) {
       themeElement.setAttribute('data-theme-status', 'dark');
