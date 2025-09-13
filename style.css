@@ -3,6 +3,133 @@
   --ease-elastic: linear(0, 0.55 7.5%, 0.85 12%, 0.95 14%, 1.03 16.5%, 1.09 20%, 1.13 22%, 1.14 23%, 1.15 24.5%, 1.15 26%, 1.13 28%, 1.11 31%, 1.05 39%, 1.02 43%, 0.99 47%, 0.98 52%, 0.97 59%, 1.002 81%, 1);
 }
 
+/* ===== Cohesive Theme Overrides (Scrollytelling-inspired) ===== */
+:root {
+  --accent: #C9FC7D;              /* Soft lime accent */
+  --accent-strong: #A8FF51;       /* Strong accent for emphasis */
+  --text: #1B1D1C;                /* Primary text (light mode) */
+  --text-inverse: #EFEEEC;        /* On dark/colored surfaces */
+  --surface: rgba(255,255,255,0.65);
+  --surface-blur: 12px;
+  --border: rgba(0,0,0,0.08);
+}
+
+body[data-theme-status="dark"] {
+  --text: #E6E7E5;
+  --surface: rgba(16,16,16,0.55);
+  --border: rgba(255,255,255,0.08);
+}
+
+/* Background: image + subtle animated color overlay */
+body {
+  color: var(--text);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60% 80% at 15% 10%, rgba(8,52,42,0.35), transparent 65%),
+    radial-gradient(60% 80% at 85% 90%, rgba(201,252,125,0.18), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+  animation: bgHue 30s ease-in-out infinite alternate;
+}
+@keyframes bgHue {
+  0% { filter: hue-rotate(0deg) saturate(100%); }
+  100% { filter: hue-rotate(-6deg) saturate(110%); }
+}
+
+/* Glassy content surfaces */
+main,
+.content-box {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* No outer border/background on anime slider */
+.anime-slider-main {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Special styling for main section containing anime slider */
+.anime-slider-main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: transparent; /* remove grey background */
+  border-radius: 0; /* no visual rounding needed without background */
+  box-shadow: none; /* remove outer shadow */
+  border: none !important; /* remove any thin/green borders */
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Buttons: accent-driven, subtle motion */
+.btn-bounce { color: #0e1b16; }
+.btn-bounce-bg {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 8px 18px rgba(169, 255, 81, 0.25);
+}
+.btn-bounce:hover .btn-bounce-bg { box-shadow: 0 12px 28px rgba(169, 255, 81, 0.35); }
+
+.btn-bounce.is--secondary { color: var(--text-inverse); }
+.btn-bounce-bg.is--secondary {
+  background: color-mix(in srgb, #245e51 30%, transparent);
+  border: 2px solid var(--accent);
+}
+
+/* Slider controls unify */
+.gsap-slider__control {
+  background: transparent;
+  color: var(--text-inverse);
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  transition: transform .25s ease, background .25s ease, color .25s ease;
+}
+.gsap-slider__control:hover {
+  transform: translateY(-2px);
+  background: var(--accent);
+  color: #0e1b16;
+}
+
+/* Links with draw effect adopt accent */
+.text-draw { color: var(--accent); }
+.text-draw .text-draw__box { color: currentColor; }
+
+/* Content box tune for dots section: keep its identity, refine shadow */
+.section-dots {
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35) !important;
+}
+
+/* Card images slight depth */
+.cover-image {
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Subtle parallax variable (used by JS) */
+body { background-position: center calc(50% + var(--bg-parallax, 0px)); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  .btn-bounce,
+  .btn-bounce-bg,
+  .gsap-slider__control { transition: none; }
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -15,11 +142,6 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
-    background-image: url('https://www.publicdomainpictures.net/pictures/40000/velka/path-in-the-woods-13615460746I3.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     padding-bottom: 80px; /* Add space for fixed footer */
     overflow-x: hidden; /* Prevent horizontal scrolling from animated dots */
 }
@@ -34,6 +156,29 @@ body {
   will-change: transform, opacity;
   pointer-events: none; 
 }
+
+/* Fullscreen background video (16:9) */
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* preserves 16:9 while covering */
+  object-position: center center;
+  z-index: -1; /* stays behind the dots layer inside .dots-bg */
+  filter: brightness(0.6) saturate(0.9);
+}
+
+/* Ensure .dots-bg stays above video but below content */
+.dots-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.dots-bg .dots-container { position: absolute; inset: 0; }
+
+/* Lift main content surfaces above */
+main, .anime-slider-main, .content-box, header, footer, .back-top__wrap { position: relative; z-index: 1; }
 
 /* Header styles */
 header {
@@ -122,13 +267,12 @@ main {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #d3d3d3;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.1);
+    background: transparent; /* remove grey background */
+    border-radius: 0; /* no visual rounding needed without background */
+    box-shadow: none; /* remove outer shadow */
+    border: none !important; /* remove any thin/green borders */
     text-align: center;
     margin-bottom: 0;
-    border: 3px solid #00ff00 !important; /* Green border for testing */
 }
 
 /* Content box styles - now with dots grid styling */
@@ -905,13 +1049,13 @@ html, body {
 
 /* Calculator Styles */
 .calculator-section {
-    max-width: 1200px;
+    width: fit-content;
+    max-width: calc(100% - 2rem);
     margin: 2rem auto;
-    padding: 2rem;
-    background-color: #d3d3d3;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.1);
+    border: none !important; /* remove thin line */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -919,15 +1063,7 @@ html, body {
     cursor: none !important;
     margin-top: 0; /* Remove any existing margin to let spacer handle it */
     text-align: center;
-}
-
-.calculator-title {
-    color: #333;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 0 1.5rem 0;
-    cursor: none !important;
+    box-shadow: none !important;
 }
 
 .calculator-content {
@@ -935,7 +1071,7 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    width: 100%;
+    width: auto;
 }
 
 .calculator-wrapper {
@@ -943,12 +1079,26 @@ html, body {
     border: 2px solid #A8FF51;
     border-radius: 8px;
     padding: 2rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    box-shadow: none !important;
     max-width: 300px;
-    width: 100%;
+    width: auto;
     cursor: none !important;
     flex-shrink: 0;
+}
+
+/* Calculator Title Styles */
+.calculator-title {
+    color: #333;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 3rem 0;
+    cursor: none !important;
+}
+
+/* Dark mode styling for calculator title - matches movie section */
+[data-theme-status="dark"] .calculator-title {
+    color: #e0e0e0;
 }
 
 /* Philanthropy button styles - now for header with draw animation */
@@ -1095,13 +1245,13 @@ html, body {
     width: 220px;
     padding: 8px 8px 20px 8px;
     margin: 0 auto;
-    background-color: #ABABAB;
+    background: transparent;
     border-radius: 4px;
     border-top: 2px solid #FFF;
     border-right: 2px solid #FFF;
     border-bottom: 2px solid #C1C1C1;
     border-left: 2px solid #C1C1C1;
-    box-shadow: -3px 3px 7px rgba(0, 0, 0, .6), inset -100px 0px 100px rgba(255, 255, 255, .5);
+    box-shadow: none;
     cursor: none !important;
 }
 
@@ -1196,97 +1346,11 @@ html, body {
 /* Responsive calculator styles */
 @media screen and (max-width: 768px) {
     .calculator-section {
-        padding: 2rem 1rem;
+        padding: 1.25rem 1rem;
+        max-width: calc(100% - 1rem);
     }
-    
-    .calculator-content {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-    }
-    
-    .philanthropy-button {
-        order: -1;
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    .bottom-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-        max-width: 280px;
-    }
-    
-    .calculator-wrapper {
-        padding: 1.5rem;
-        max-width: 280px;
-    }
-    
-    .calculator-title {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-    }
-    
-    #container {
-        width: 200px;
-        padding: 6px 6px 18px 6px;
-    }
-    
-    #display {
-        height: 38px;
-        font-size: 24px;
-    }
-    
-    .button {
-        width: 40px;
-        height: 40px;
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .philanthropy-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-        max-width: 260px;
-    }
-    
-    .bottom-button {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        max-width: 260px;
-    }
-    
-    .bottom-button-section {
-        padding: 2rem 1rem;
-    }
-    
-    .calculator-wrapper {
-        padding: 1rem;
-        max-width: 260px;
-    }
-    
-    .calculator-title {
-        font-size: 1.1rem;
-    }
-    
-    #container {
-        width: 180px;
-        padding: 4px 4px 16px 4px;
-    }
-    
-    #display {
-        height: 34px;
-        font-size: 20px;
-    }
-    
-    .button {
-        width: 36px;
-        height: 36px;
-        font-size: 12px;
-    }
+    .calculator-content { width: auto; }
+    .calculator-wrapper { width: auto; }
 }
 
 /* Slider title styling */
@@ -1307,20 +1371,17 @@ html, body {
     margin: 2rem auto !important;
 }
 
-.anime-slider-main {
+/* Removed forced border on .anime-slider-main to keep it clean/transparent */
+/* .anime-slider-main {
     border: 1px solid rgba(0,0,0,0.1) !important;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
     border-radius: 8px !important;
     margin: 2rem auto !important;
-}
+} */
 
 /* Dark mode styling for calculator section */
 [data-theme-status="dark"] .calculator-section {
-    background-color: #000000;
-}
-
-[data-theme-status="dark"] .calculator-title {
-    color: #e0e0e0;
+    background: transparent;
 }
 
 /* ========== 404 PAGE STYLES ========== */
@@ -2190,7 +2251,7 @@ body.page-404 {
 }
 
 .back-top__arrow {
-  width: 2.5em;
+  color: var(--accent); /* #C9FC7D */
 }
 
 .back-top__arrow-wrap {
@@ -2256,3 +2317,46 @@ body.page-404 {
     padding: .4em;
   }
 }
+
+/* Global dots background replaces page background image */
+body {
+  background-image: none !important;
+}
+
+.dots-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* sits beneath content surfaces which have z-index >=1 */
+  pointer-events: none; /* do not block interactions */
+}
+
+.dots-bg .dots-container {
+  position: absolute;
+  inset: 0;
+}
+
+/* Avoid double grids: hide section-local dots now that we have a global background */
+.section-dots .dots-container { display: none; }
+
+/* Transparent background for movie section */
+.flick-cards-section { 
+  background: transparent !important; 
+  backdrop-filter: none !important; 
+  -webkit-backdrop-filter: none !important; 
+}
+
+[data-theme-status="dark"] .flick-cards-section { 
+  background: transparent !important; 
+  backdrop-filter: none !important; 
+  -webkit-backdrop-filter: none !important; 
+}
+
+/* Re-enable dots grid inside the Discover section only */
+.section-dots .dots-container { display: flex; }
+
+/* Remove global dots background overrides if present */
+body { background-image: none !important; }
+
+/* Optional: keep other content above the section grid */
+.section-dots { position: relative; }
+.section-dots .dots-container { position: absolute; inset: 0; pointer-events: none; }

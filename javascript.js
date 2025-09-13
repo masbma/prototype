@@ -429,13 +429,14 @@ function initCSSMarquee() {
 
 function initGlowingInteractiveDotsGrid() {
   document.querySelectorAll('[data-dots-container-init]').forEach(container => {
+    const isFullscreen  = container.hasAttribute('data-dots-fullscreen');
     const colors         = { base: "#245E51", active: "#A8FF51" };
-    const threshold      = 200;
+    const threshold      = isFullscreen ? 260 : 200; // bigger radius for background
     const speedThreshold = 100;
-    const shockRadius    = 325;
+    const shockRadius    = isFullscreen ? 380 : 325; // slightly wider shock for bg
     const shockPower     = 5;
     const maxSpeed       = 5000;
-    const centerHole     = true;
+    const centerHole     = isFullscreen ? false : true; // Discover section retains hole
 
     let dots       = [];
     let dotCenters = [];
@@ -474,7 +475,7 @@ function initGlowingInteractiveDotsGrid() {
           d.style.visibility = "hidden";
           d._isHole = true;
         } else {
-          gsap.set(d, { x: 0, y: 0, backgroundColor: colors.base });
+          gsap.set(d, { x: 0, y: 0, backgroundColor: colors.base, autoAlpha: 0.9 });
           d._inertiaApplied = false;
         }
 
@@ -501,7 +502,7 @@ function initGlowingInteractiveDotsGrid() {
 
     let lastTime = 0, lastX = 0, lastY = 0;
 
-    window.addEventListener("mousemove", e => {
+    const onMouseMove = e => {
       const now   = performance.now();
       const dt    = now - lastTime || 16;
       let   dx    = e.pageX - lastX;
@@ -545,6 +546,18 @@ function initGlowingInteractiveDotsGrid() {
             });
           }
         });
+      });
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+
+    // Reset dots when mouse leaves the window
+    window.addEventListener("mouseleave", () => {
+      dots.forEach(d => {
+        if (!d._isHole) {
+          gsap.to(d, { x: 0, y: 0, backgroundColor: colors.base, duration: 0.6, ease: "power2.out" });
+          d._inertiaApplied = false;
+        }
       });
     });
 
@@ -608,6 +621,60 @@ function initDocumentTitleChange() {
   // If user leaves tab, set the alternative title
   window.addEventListener("blur", () => {
     document.title = documentTitleOnBlur;
+  });
+}
+
+// Subtle background parallax using a CSS variable
+function initSubtleBackgroundParallax(){
+  const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm) return;
+  const STRENGTH = 60; // px range for parallax shift
+  const update = () => {
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const p = window.scrollY / maxScroll; // 0..1
+    const offset = (p - 0.5) * STRENGTH;
+    document.body.style.setProperty('--bg-parallax', `${offset.toFixed(2)}px`);
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+}
+
+// Soft reveal for main surfaces and content boxes
+function initSoftScrollReveals(){
+  const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('main, .anime-slider-main, .content-box');
+  if (!targets.length) return;
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
+    // Fallback with IntersectionObserver
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          e.target.style.transition = 'transform .6s ease, opacity .6s ease';
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.opacity = '1';
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1});
+
+    targets.forEach(t => {
+      t.style.transform = 'translateY(24px)';
+      t.style.opacity = '0';
+      io.observe(t);
+    });
+    return;
+  }
+
+  targets.forEach(t => {
+    gsap.set(t, { y: rm ? 0 : 24, autoAlpha: rm ? 1 : 0 });
+    ScrollTrigger.create({
+      trigger: t,
+      start: 'top 85%',
+      once: true,
+      onEnter: ()=> gsap.to(t, { y: 0, autoAlpha: 1, duration: rm ? 0.01 : 0.8, ease: 'power3.out' })
+    });
   });
 }
 
@@ -1196,6 +1263,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initGlowingInteractiveDotsGrid();
         initCenterButtons();
         initFlickCards();
+        initSubtleBackgroundParallax();
+        initSoftScrollReveals();
     }
     
     // Initialize common functions for both pages
