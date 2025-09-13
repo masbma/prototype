@@ -1,3 +1,48 @@
+/* Discover Music - square background video (centered, behind content) */
+.content-box.section-dots {
+  position: relative;
+  overflow: hidden;
+  /* Ensure there's room for the square background */
+  min-height: min(80vmin, 520px);
+  /* Center content vertically/horizontally inside the section */
+  display: grid;
+  place-items: center;
+}
+
+.discover-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 0; /* behind buttons */
+  pointer-events: none; /* allow clicks through */
+}
+
+.discover-bg__square {
+  width: min(80vmin, 520px);
+  aspect-ratio: 1 / 1; /* perfect square */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.discover-bg__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.05) saturate(1.1);
+}
+
+/* Ensure the section's interactive content sits above the background */
+.content-box.section-dots .center-buttons {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduce extra padding so content sits truly centered in the square */
+.section-dots .center-buttons {
+  padding: 0.75rem 1rem;
+}
 /* CSS Variables */
 :root{
   --ease-elastic: linear(0, 0.55 7.5%, 0.85 12%, 0.95 14%, 1.03 16.5%, 1.09 20%, 1.13 22%, 1.14 23%, 1.15 24.5%, 1.15 26%, 1.13 28%, 1.11 31%, 1.05 39%, 1.02 43%, 0.99 47%, 0.98 52%, 0.97 59%, 1.002 81%, 1);
@@ -119,6 +164,84 @@ main,
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+/* Ensure calculator stays above the grid */
+.calculator-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure movies title stays above the grid */
+.flick-cards-title {
+  position: relative;
+  z-index: 1;
+}
+
+/* Center Discover Music/Anime buttons inside the section */
+.section-dots .center-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem; /* space around while keeping box size consistent */
+  width: 100%;
+  margin: 0; /* override any auto margins so we can flex-center vertically */
+  flex: 1 1 auto; /* occupy available vertical space to enable vertical centering */
+}
+.section-dots .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  transform: scale(1);
+  transform-origin: center center;
+  margin: 0 auto; /* horizontally center the group */
+}
+.section-dots .btn-group__col { display: flex; }
+.section-dots .center-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Global fullscreen dots background and section video ===== */
+/* Fullscreen dots grid behind everything */
+.dots-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.dots-bg .dots-container { position: absolute; inset: 0; }
+
+/* Halve the dot size specifically for the fullscreen background grid */
+.dots-bg .dots-container {
+  font-size: 0.5em;
+}
+
+/* Keep content above background layers */
+main, .anime-slider-main, .content-box, header, footer, .back-top__wrap { position: relative; z-index: 1; }
+
+/* Section: maintain relative positioning for internal absolute children */
+.section-dots { position: relative; }
+
+/* Avoid double grids in section since we now have a video */
+.section-dots .dots-container { display: none; }
+
+/* Vertically center the Discover buttons; keep the Osmo icon at bottom */
+.section-dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center content vertically */
+}
+.section-dots .center-buttons {
+  margin: 0 auto; /* horizontal center */
+  flex: 0 0 auto; /* don't consume all vertical space */
+}
+.section-dots .osmo-icon__link {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0; /* override previous auto margins */
+  align-self: auto;
+  z-index: 1;
+}
+
 /* Subtle parallax variable (used by JS) */
 body { background-position: center calc(50% + var(--bg-parallax, 0px)); }
 
@@ -188,7 +311,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: none;
 }
 
 .header-content {
@@ -320,7 +443,8 @@ main {
 }
 
 .dots-container {
-    gap: 2em;
+  /* Spaced out dots by 100% (double the previous gap) */
+  gap: 2.5em;
     pointer-events: none;
     flex-flow: wrap;
     justify-content: center;
@@ -1088,17 +1212,25 @@ html, body {
 
 /* Calculator Title Styles */
 .calculator-title {
-    color: #333;
+  color: #000;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 600;
     margin: 0 0 3rem 0;
     cursor: none !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Match grey pill background used on titles */
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dcdcdc;
+  padding: 0.25em 0.6em;
+  border-radius: 0.35em;
 }
 
 /* Dark mode styling for calculator title - matches movie section */
 [data-theme-status="dark"] .calculator-title {
-    color: #e0e0e0;
+  color: #000; /* keep black text on grey pill in dark mode too */
 }
 
 /* Philanthropy button styles - now for header with draw animation */
@@ -1355,12 +1487,19 @@ html, body {
 
 /* Slider title styling */
 .slider-title {
-    color: #efeeec;
+  color: #333;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0 0 2rem 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Match movies title: centered grey pill behind text */
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dcdcdc;
+  padding: 0.25em 0.6em;
+  border-radius: 0.35em;
 }
 
 /* Force borders on major sections - matching the reference style */
@@ -2034,6 +2173,14 @@ body.page-404 {
   margin-bottom: 3rem;
   color: #333;
   font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Only the text gets a grey pill background */
+  display: table; /* shrink-to-fit so the grey pill hugs the text */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dcdcdc;
+  padding: 0.25em 0.6em;
+  border-radius: 0.35em;
 }
 
 .flick-group {
@@ -2360,3 +2507,67 @@ body { background-image: none !important; }
 /* Optional: keep other content above the section grid */
 .section-dots { position: relative; }
 .section-dots .dots-container { position: absolute; inset: 0; pointer-events: none; }
+
+/* ===== Discover Music section: remove background elements ===== */
+/* Clear any fills, borders, shadows, and blurs on the section wrapper */
+.content-box.section-dots,
+.section-dots {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure any section-local dots are hidden */
+.section-dots .dots-container { display: none !important; }
+
+/* Hide decorative Osmo icon from the background */
+.section-dots .osmo-icon__link,
+.section-dots .osmo-icon-svg { display: none !important; }
+
+/* ===== Calculator: grey background behind buttons ===== */
+#container {
+  background-color: #dcdcdc !important; /* neutral grey pad behind buttons */
+}
+
+/* Remove the green border around the calculator wrapper */
+.calculator-wrapper {
+  border: none !important;
+}
+
+/* ===== Force transparent backgrounds for all boxes on index.html ===== */
+/* Section wrappers and major containers */
+header,
+main,
+.content-box,
+.flick-cards-section,
+.anime-slider-main,
+.gsap-slider,
+.demo-card,
+.flick-card,
+.bottom-button-section,
+footer,
+.marquee-css,
+.calculator-section,
+.calculator-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Also clear dark-mode variants for these containers */
+[data-theme-status="dark"] header,
+[data-theme-status="dark"] main,
+[data-theme-status="dark"] footer,
+[data-theme-status="dark"] .marquee-css,
+[data-theme-status="dark"] .gsap-slider,
+[data-theme-status="dark"] .demo-card,
+[data-theme-status="dark"] .flick-card,
+[data-theme-status="dark"] .content-box,
+[data-theme-status="dark"] .flick-cards-section,
+[data-theme-status="dark"] .calculator-section,
+[data-theme-status="dark"] .calculator-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+}

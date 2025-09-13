@@ -14,7 +14,12 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 </head>
 <body data-theme-status="light">
-    <!-- Global background dots grid removed -->
+    <!-- Global background dots grid -->
+    <div class="dots-bg">
+      <div data-dots-container-init="" data-dots-fullscreen="" class="dots-container">
+        <div class="dot"></div>
+      </div>
+    </div>
     
     <div class="cursor">
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 25 38" fill="none" class="cursor-inner regular">
@@ -156,12 +161,15 @@
     
     
     
-    <section class="content-box section-dots">
-        <div class="section-dots__wrap">
-            <div data-dots-container-init="" class="dots-container">
-                <div class="dot"></div>
-            </div>
-        </div>
+  <section class="content-box section-dots">
+  <!-- Square background video for Discover Music section -->
+    <div class="discover-bg" aria-hidden="true">
+      <div class="discover-bg__square">
+        <video class="discover-bg__video" autoplay muted loop playsinline preload="metadata">
+          <source src="https://cdn.pixabay.com/video/2019/12/07/29939-378294542_large.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
         <div class="center-buttons">
             <div class="btn-group">
                 <div class="btn-group__col">

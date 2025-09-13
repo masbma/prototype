@@ -431,7 +431,7 @@ function initGlowingInteractiveDotsGrid() {
   document.querySelectorAll('[data-dots-container-init]').forEach(container => {
     const isFullscreen  = container.hasAttribute('data-dots-fullscreen');
     const colors         = { base: "#245E51", active: "#A8FF51" };
-    const threshold      = isFullscreen ? 260 : 200; // bigger radius for background
+  const threshold      = isFullscreen ? 130 : 200; // 50% hover radius on background
     const speedThreshold = 100;
     const shockRadius    = isFullscreen ? 380 : 325; // slightly wider shock for bg
     const shockPower     = 5;
@@ -441,14 +441,29 @@ function initGlowingInteractiveDotsGrid() {
     let dots       = [];
     let dotCenters = [];
 
+    function recomputeDotCenters() {
+      dotCenters = dots
+        .filter(d => !d._isHole)
+        .map(d => {
+          const r = d.getBoundingClientRect();
+          return {
+            el: d,
+            x:  r.left + window.scrollX + r.width  / 2,
+            y:  r.top  + window.scrollY + r.height / 2
+          };
+        });
+    }
+
     function buildGrid() {
       container.innerHTML = "";
       dots = [];
       dotCenters = [];
 
-      const style = getComputedStyle(container);
-      const dotPx = parseFloat(style.fontSize);
-      const gapPx = dotPx * 2;
+  const style = getComputedStyle(container);
+  const dotPx = parseFloat(style.fontSize);
+  // Read the actual gap from CSS so spacing stays in sync with styles
+  const rawGap = style.gap || style.columnGap || "0";
+  const gapPx = parseFloat(rawGap) || dotPx * 2;
       const contW = container.clientWidth;
       const contH = container.clientHeight;
 
@@ -483,21 +498,12 @@ function initGlowingInteractiveDotsGrid() {
         dots.push(d);
       }
 
-      requestAnimationFrame(() => {
-        dotCenters = dots
-          .filter(d => !d._isHole)
-          .map(d => {
-            const r = d.getBoundingClientRect();
-            return {
-              el: d,
-              x:  r.left + window.scrollX + r.width  / 2,
-              y:  r.top  + window.scrollY + r.height / 2
-            };
-          });
-      });
+      requestAnimationFrame(recomputeDotCenters);
     }
 
     window.addEventListener("resize", buildGrid);
+    // Keep centers in sync with scroll so hover works at any scroll position
+    window.addEventListener("scroll", () => requestAnimationFrame(recomputeDotCenters), { passive: true });
     buildGrid();
 
     let lastTime = 0, lastX = 0, lastY = 0;
